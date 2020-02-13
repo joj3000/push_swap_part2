@@ -6,7 +6,7 @@
 /*   By: jerbs <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 13:31:21 by jerbs             #+#    #+#             */
-/*   Updated: 2020/01/31 18:22:25 by jerbs            ###   ########.fr       */
+/*   Updated: 2020/02/13 04:04:32 by jerbs            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ t_lst				*lst_new_a(int i);
 t_lst				*lst_new_b(int i);
 
 t_lst				*lst_copy_a(t_lst *list);
+t_lst				*create_lista(int ac, char **av);
 
 long int			ft_atol(char *str);
 int					ft_strcmp(char *s1, char *s2);
@@ -104,6 +105,9 @@ int					if_rev_sorted_a(t_lst **list);
 int					error_check(int ac, char **av);
 int					is_sorted(t_lst *list);
 
-void	push_li_front(t_lst **list, long int s);
+void				push_li_front(t_lst **list, long int s);
+void				free_tab(char **tab, char *s);
+
+char				**ft_strsplit(char const *s, char c);
 
 #endif

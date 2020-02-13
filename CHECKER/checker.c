@@ -6,7 +6,7 @@
 /*   By: jerbs <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 12:47:19 by jerbs             #+#    #+#             */
-/*   Updated: 2020/01/31 18:34:03 by jerbs            ###   ########.fr       */
+/*   Updated: 2020/02/13 04:58:37 by jerbs            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,50 +43,9 @@ int		stuff(char **line, t_lst **lista, t_lst **listb)
 
 void	middle_shit(t_lst **lista, t_lst **listb, char **line)
 {
-	(void)line;
 	write(1, "Error\n", 6);
 	lst_delboth(lista, listb);
-}
-
-int 	contains_space(char *s)
-{
-	int i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == ' ')
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-t_lst *create_lista(int ac, char **av)
-{
-	t_lst *lista;
-	int i;
-		
-	lista = (t_lst *)malloc(sizeof(t_lst));
-	lista->a = ft_atol(av[1]);
-	lista->next = NULL;
-	if (contains_space(av[1]) == 1)
-	{
-		i = 0;
-		while (av[1][i])
-		{
-			push_li_front(&lista, ft_atol(&av[1][i]));
-			while (av[1][i] && av[1][i] != ' ')
-				i++;
-		}
-	}
-	else
-	{
-		i = 2;
-		while (i < ac)
-			push_ch_front(&lista, av[i++]);
-	}
-	return (lista);
+	free(line);
 }
 
 void	end_shit(t_lst **lista, t_lst **listb)
@@ -101,20 +60,12 @@ int		main(int ac, char **av)
 {
 	t_lst	*lista;
 	t_lst	*listb;
-//	int		i;
 	char	*line;
 
 	if (error_check(ac, av) == 0)
 		return (0);
-//	i = 2;
 	listb = NULL;
 	lista = create_lista(ac, av);
-//	lista = (t_lst *)malloc(sizeof(t_lst));
-//	lista->a = ft_atol(av[1]);
-//	lista->next = NULL;
-//	while (i < ac)
-//		push_ch_front(&lista, av[i++]);
-	printf("%d\n", lista->a);
 	while (get_next_line(0, &line) > 0)
 	{
 		if (stuff(&line, &lista, &listb) == 0)
